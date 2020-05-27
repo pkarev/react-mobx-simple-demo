@@ -8,7 +8,7 @@ const App = inject(['store'])(observer(({store: {addRow}}) => {
         <div className='app'>
             <div className='container'>
                 <h1 className='app__title'>MobX demo</h1>
-                <button type='button' onClick={addRow}>Добавить строку</button>
+                <button className='app__button' type='button' onClick={addRow}>Добавить строку</button>
                 <Table/>
             </div>
         </div>

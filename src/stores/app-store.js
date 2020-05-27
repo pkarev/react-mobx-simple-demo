@@ -1,23 +1,33 @@
 import {observable, action} from 'mobx';
 
 export default class AppStore {
-    @observable rows = [];
+    nextId = 0;
+    @observable rows = {};
+
+    constructor(rows) {
+        if (rows) {
+            this.rows = rows;
+            this.nextId = Number(Object.keys(rows)[Object.keys(rows).length - 1]) + 1;
+        }
+
+    }
 
     @action.bound
     addRow()
     {
-        this.rows.push(`${this.rows.length}`);
+        this.rows[this.nextId] = this.nextId;
+        this.nextId++;
     }
 
     @action.bound
-    deleteRow(index)
+    deleteRow(id)
     {
-        this.rows.splice(index, 1);
+        delete this.rows[id];
     }
 
     @action.bound
-    updateRow(value, index)
+    updateRow(id, value)
     {
-        this.rows[index] = value;
+        this.rows[id] = value;
     }
 }
