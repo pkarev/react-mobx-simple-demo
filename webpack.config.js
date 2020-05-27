@@ -39,6 +39,7 @@ const config = {
     }
   },
   devServer: {
+    open: true,
     contentBase: './dist'
   },
   plugins: [
